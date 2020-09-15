@@ -1,4 +1,4 @@
 let bestCheese = "cheddar";
-let worstCheese = "footStinkaroo";
+let worstCheese = "Pied-de-Vent";
 
 export { bestCheese, worstCheese };
