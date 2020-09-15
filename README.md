@@ -93,3 +93,97 @@ __webpack-cli__ is a command line interface(CLI) so we can use scripts with webp
 __webpack-dev-server__ gives us a temporary server environment to test out our sites with our code combined in webpack.
 
 At this point we are done with our _package.json_ file.
+
+11. Make a file in the root of your project called _.babelrc_
+
+The contents of the file should be:
+~~~~
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
+~~~~
+This file holds onto the different presets we use to convert files.  They can be for javascript, jade(pug), css, typescript, or any number of other files.
+
+12. Make a file in the root of your project called _webpack.config.js_
+
+The contents of the file should be:
+~~~~
+module.exports = {
+    entry: './src/index.js',
+    module: {
+        rules: [
+            {
+                test: /\.(js)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['*', '.js']
+    },
+    output: {
+        path: __dirname + '/dist',
+        publicPath: '/',
+        filename: 'bundle.js'
+    },
+    devServer: {
+        contentBase: './dist'
+    }
+};
+~~~~
+### What does each part of the webpack.config.js do?
+__entry__ shows us what file we are going to start our script with.  In this case it is _src/index.js_
+
+__module__ holds onto a list of rules for us.  Each rule has a test and a use.  Sometimes, they have an exclude too.  In this case we are testing for any file ending with js, except if it is in the node_modules folder.  When we find one, we are going to use babel-loader, which will call preset-env to convert it to ES5.
+
+__resolve__ holds onto a list of extensions webpack checks on.
+
+__output__ looks for a folder named _dist_ in the root of our project, and will put our compiled code there, in a file called _bundle.js_
+
+__devServer__ tells webpack-dev-server to serve content from our _dist_ folder.
+
+## Thats All Our Setup! Now a tiny bit of code!
+Now thats done, lets add code to our js files.
+
+13. In src/index.js add the following code:
+~~~~
+import { bestCheese, worstCheese } from './otherFile.js'
+
+console.log("borkings to all and to all a good bork!");
+let titleFun = `${bestCheese} and ${worstCheese} are two different cheeses of interesting origin!.`;
+console.log(titleFun);
+let theTitler = document.querySelector("h1");
+theTitler.innerText = titleFun;
+~~~~
+
+14. In otherFile.js add the following code:
+~~~~
+let bestCheese = "cheddar";
+let worstCheese = "Pied-de-Vent";
+
+export { bestCheese, worstCheese };
+~~~~
+
+15. Save everything. Go to your terminal type the code below and hit enter.
+~~~~
+npm run start
+~~~~
+
+16. In your browser go to http://localhost:8080
+
+What does your title say?  If it says:
+
+Cheddar and Pied-de-vent are two different cheeses of interesting origin!
+
+Then you have it right :)
+
+## So Whats Going On Here?
+
+Your webpage is being served from localhost:8080.  It is grabbing content from your dist folder.  What is in your dist folder?  _index.html_. Index is pointing to _bundle.js_.  _bundle.js_ is a combination of _src/index.js_ and _otherFile.js_.  
+
+_otherFile.js_ is an ES6 module, so it only exports what we want it to.  In this case it is exporting two variables; bestCheese and worstCheese.  We could export anything though.  Classes, functions, variables...you name it!
+
+One last thing...how do we stop our server?  Click on your terminal then Press control-c on your keyboard and your server will stop.

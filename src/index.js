@@ -7,7 +7,7 @@
 import { bestCheese, worstCheese } from './otherFile.js'
 console.log("borkings to all and to all a good bork!");
 // * In the line below we are using a template literal to use best and worst cheese in our string
-let titleFun = `${bestCheese} ${worstCheese} are two different cheeses of interesting origin!.`;
+let titleFun = `${bestCheese} and ${worstCheese} are two different cheeses of interesting origin!.`;
 // * Here we are console logging our string from the line above!
 console.log(titleFun);
 
