@@ -186,4 +186,4 @@ Your webpage is being served from localhost:8080.  It is grabbing content from y
 
 _otherFile.js_ is an ES6 module, so it only exports what we want it to.  In this case it is exporting two variables; bestCheese and worstCheese.  We could export anything though.  Classes, functions, variables...you name it!
 
-One last thing...how do we stop our server?  Click on your terminal then Press control-c on your keyboard and your server will stop.
+One last thing...how do we stop our server?  Click on your terminal then press __control-c__ on your keyboard and your server will stop.
