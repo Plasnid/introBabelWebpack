@@ -77,4 +77,19 @@ __--config ./webpack.config.js__ like in our previous script, is showing us wher
 
 __--mode production__ tells our script that want to compress and remove all the spaces and tabs.
 
+## What Do Our devDependencies Do?
+__@babel/core__ is the core set of instructions for babel.
+ 
+__@babel/node__ is a CLI(command line interface) for babel in node. It lets us use scripts to control babel.
+
+__@babel/preset-env__ is a plugin for babel that lets it convert ES6+ to ES5 JavaScript.
+
+__babel-loader__ lets us use babel inside of webpack.
+
+__webpack__ is a file bundler.
+
+__webpack-cli__ is a command line interface(CLI) so we can use scripts with webpack.
+
+__webpack-dev-server__ gives us a temporary server environment to test out our sites with our code combined in webpack.
+
 At this point we are done with our _package.json_ file.
